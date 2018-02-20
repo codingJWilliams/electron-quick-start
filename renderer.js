@@ -4,20 +4,25 @@
 //var _require = require("remote").require;
 //var { BrowserWindow } = _require("electron");
 var fs = require("fs");
-var code = fs.readFileSync("./code.secret", "utf-8");
-var snoowrap = require("snoowrap");
-var r = new snoowrap({
-    userAgent: "TranscriberyThing - /u/voidcraftedgaming",
-    clientId: "h5yiNpGGdCGsng",
-    clientSecret: "",
-    refreshToken: code.split("\n")[1],
-    accessToken: code.split("\n")[0]
-})
-var tor = r.getSubreddit("TranscribersOfReddit");
-tor.getNew().then(res => {
-    document.write(res
-            .filter(sub => sub.author === "transcribersofreddit")
-            .filter(sub => sub.link_flair_text === "Unclaimed")
-            .map(sub => `<h1>${sub.text}</h1>\n`).join(""))
-        //document.write(JSON.stringify(res, null, 2).replace("\n", "<br>"))
-})
+var util = require("./utility");
+var pass = [];
+require("./node_modules/jQuery/tmp/jquery.js");
+
+(async function() {
+    console.log("jQuery is loaded");
+    var subs = await util.getSubmissions();
+    subs = subs.filter(sub => !pass.includes(sub.id));
+    console.log(subs[0].thumbnail)
+    console.log(JSON.stringify(subs[0], null, 2))
+    $("#imgbox").attr("src", subs[0].preview.images[0].source.url)
+    $("#info").html("<br>" + subs[0].title)
+    $("#smashbutton").click(function() {
+        window.location.replace("file://" + __dirname + "/transStart.html#" + subs[0].id)
+    });
+    $("#passbutton").click(function() {
+        pass.push(subs[0].id);
+        subs.shift()
+        $("#imgbox").attr("src", subs[0].preview.images[0].source.url)
+        $("#info").html("<br>" + subs[0].title)
+    });
+})()

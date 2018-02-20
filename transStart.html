@@ -14,18 +14,20 @@
 
 <body class="bg-dark text-white">
     <div class="container-fluid">
+        <br>
         <div class="row">
-            <div class="col-sm-5">
-                <br>
+            <div class="col-sm-4">
                 <img id="imgbox" class="img-fluid" alt="Thumbnail" style="width: 100%">
             </div>
-            <div class="col-sm-4" id="info">
-
-            </div>
-            <div class="col-sm-3">
+            <div class="col-sm-8">
+                <select id="sel" style="width: 100%">
+                            <option value="itrans_notxt">Image Transcription (no text)</option>
+                            <option value="itrans_txt">Image Transcription (text)</option>
+                            <option value="sms">SMS Transcription</option>
+                            <option value="empty">Empty</option>
+                </select>
                 <br>
-                <button id="smashbutton" class="btn btn-success">Smash</button>
-                <button id="passbutton" class="btn btn-danger">Pass</button>
+                <button id="go" class="btn btn-primary">Claim & Transcribe</button>
             </div>
         </div>
     </div>
@@ -35,7 +37,7 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="renderer.js"></script>
+    <script src="renderertStart.js"></script>
 </body>
 
 </html>
